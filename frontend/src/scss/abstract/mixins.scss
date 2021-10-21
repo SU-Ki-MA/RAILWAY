@@ -1,0 +1,13 @@
+@mixin animation($name, $time, $function, $count) {
+  -webkit-animation: $name $time $function $count; /* Safari 4+ */
+  -moz-animation: $name $time $function $count; /* Fx 5+ */
+  -o-animation: $name $time $function $count; /* Opera 12+ */
+  animation: $name $time $function $count; /* IE 10+, Fx 29+ */
+}
+@mixin transition($elem, $time, $function) {
+  transition: $elem $time $function;
+  -o-transition: $elem $time $function;
+  -ms-transition: $elem $time $function;
+  -moz-transition: $elem $time $function;
+  -webkit-transition: $elem $time $function;
+}
