@@ -21,7 +21,8 @@ app.use(express.static(__dirname + "/source"))
 
 //validate
 app.use(require("./routes/validate"));
-
+//sign-up
+app.use(require("./routes/signup"));
 
 
 //used to run server in port 3001

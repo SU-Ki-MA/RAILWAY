@@ -2,8 +2,9 @@ const express = require("express")
 require("dotenv").config()
 var app = express.Router();
 const UserInfo = require("../mongodb/User.js");
+const checkDb = require("../functions/checkDb.js")
 app.route("/validate")
-  .post(async (req, res) => {
+  .post(checkDb, async (req, res) => {
     try {
       var findUser = await UserInfo.findOne({ mail: req.body.mail }).exec()
       if (findUser) {

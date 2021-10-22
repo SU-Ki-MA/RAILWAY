@@ -2,6 +2,10 @@
 const mongoose = require("./Main.js")
 var Schema = mongoose.Schema;
 var userinfos = new Schema({
+  /* _id: {
+    type: String,
+    unique: true
+  }, */
   userName: String,
   mail: String,
   password: String,
