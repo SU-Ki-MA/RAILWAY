@@ -10,13 +10,14 @@ async function sendMail(toMail, subject, html) {
       user: process.env.MAIL,
       pass: process.env.PASSWORD
     }
-  })
+  }) 
   var sent = await transporter.sendMail({
     from: process.env.MAIL, // sender address
     to: toMail, // list of receivers
     subject: subject, // Subject line 
     html: html, // html body
   }).catch(err => {
+    console.log(err)
     sent = false
   })
   if (sent) {
