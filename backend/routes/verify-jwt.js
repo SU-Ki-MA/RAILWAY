@@ -18,8 +18,8 @@ app.route("/verify-jwt")
       }else{
         res.send({error:"Invalid jwt"})
       }
-    } catch (err) { 
-      console.log(err)
+    } catch (err) {  
+      console.log("Invalid jwt")
       res.send({ error: "server error" })
     }
   }) 

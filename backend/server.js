@@ -28,10 +28,11 @@ app.use(require("./routes/verify-signup"));
 //signin
 app.use(require("./routes/signin"));
 //reset-password
-app.use(require("./routes/reset-password"));
-
+app.use(require("./routes/reset-password")); 
 //verify-jwt
 app.use(require("./routes/verify-jwt"));
+//station-autocomplete
+app.use(require("./routes/station-autocomplete"));
 
 //used to run server in port 3001
 app.listen(3001, function () {

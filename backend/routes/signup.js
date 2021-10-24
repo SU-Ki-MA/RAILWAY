@@ -8,6 +8,11 @@ const sendMail = require("../functions/mailer");
 app.route("/sign-up")
   .post(async (req, res) => {
     try { 
+      var foundMail = await UserInfo.findOne({ mail: req.body.email }).exec()
+      if (foundMail) {
+        res.send({ error: "The mail id provided is already in use." })
+        return
+      }
       if(req.body.password.length<8){ 
         res.send({ error: "The password should be minimum of 8 characters." })
         return;
@@ -15,12 +20,7 @@ app.route("/sign-up")
       if (req.body.password.localeCompare(req.body.confirmPassword)!==0) {
         res.send({ error: "Password and Confirm password doesn't match" })
         return
-      } 
-      var foundMail = await UserInfo.findOne({ mail: req.body.email }).exec()
-      if (foundMail) {
-        res.send({ error: "The mail id provided is already in use." })
-        return
-      }
+      }  
       var hashedPassword = new Password().hash(req.body.password)
       var verificatinNumber = "";
       for (var i = 0; i < 6; i++) {

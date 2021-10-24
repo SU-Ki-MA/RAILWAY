@@ -91,11 +91,11 @@ export default function Reset() {
         setTimer(setInterval(()=>{ 
           setVerificationTimeout((verificationTimeout) =>{
             if(verificationTimeout<=1){ 
-              /* console.log("time out")
+              console.log("time out")
               clearInterval(timer)
               setTimer(false)
               window.location="/signin"
-              return; */
+              return;
             }    
             return verificationTimeout - 1;
           })
@@ -112,7 +112,58 @@ export default function Reset() {
       validate(process.env.REACT_APP_API + "/reset-password",  "?mail="+userDetails.email,tempFunction,"get")
     }
   }
-  //start code from update input values 
+  function updateOtp(e){
+    if(e.target.value.length===0){
+      setUserDetails({...userDetails,otp:false})
+      return
+    }
+    setUserDetails({...userDetails,otp:e.target.value})
+  }
+  function updateNewPassword(e){
+    if(e.target.value.length===0){
+      setUserDetails({...userDetails,newPassword:false})
+      return
+    }
+    if (e.target.value.length < 8) {
+      setError("The password should be minimum of 8 characters.") 
+    } else {
+      setError(false);
+    }
+    setUserDetails({...userDetails,newPassword:e.target.value})
+  }
+  function updateConfirmNewPassword(e){
+    if(e.target.value.length===0){
+      setUserDetails({...userDetails,confirmNewPassword:false})
+      return
+    } 
+    setUserDetails({...userDetails,confirmNewPassword:e.target.value})
+  }
+  function resetPassword(){
+    if(!(userDetails.email && userDetails.otp && userDetails.newPassword && userDetails.confirmNewPassword)){
+      setError("Values should not be empty.\n Please Enter again.") 
+      return
+    }
+    if(userDetails.newPassword.length<8){
+      setError("The password should be minimum of 8 characters.") 
+      return;
+    }
+    setError(false) 
+    setLoader(true)
+    const tempFunction=(res)=>{
+      if(res.data.error){
+        setError(res.data.error)
+      }else{
+        window.location="/signin"
+      }
+    }
+    if (timer) { 
+      clearTimeout(timer);
+      setTimer(false) 
+      validate(process.env.REACT_APP_API + "/reset-password", {...userDetails,_id:userId},tempFunction,"post") 
+    } else { 
+      validate(process.env.REACT_APP_API + "/reset-password", {...userDetails,_id:userId},tempFunction,"post") 
+    }
+  }
   return ( 
     (loader===false)
     ?
@@ -137,12 +188,12 @@ export default function Reset() {
                   <label htmlFor="inputEmail" className="sr-only">Email address</label>
                   <input type="email" id="inputEmail" value={userDetails.email ? userDetails.email : ""} className="form-control mt-1" placeholder="Email address" disabled required />
                   <label htmlFor="inputOtp" className="sr-only">otp</label>
-                  <input type="text" id="inputOtp" value={userDetails.otp ? userDetails.otp : ""} className="form-control mt-1" placeholder="OTP" required />
-                  <label htmlFor="inputEmail" className="sr-only">New Password</label>
-                  <input type="email" id="inputEmail" value={userDetails.newPassword ? userDetails.newPassword : ""} className="form-control mt-1" placeholder="New Password" required />
-                  <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                  <input type="email" id="inputEmail" value={userDetails.confirmNewPassword ? userDetails.confirmNewPassword : ""} className="form-control mt-1" placeholder="Confirm New Password" required />
-                  <button className="btn btn-lg btn-primary btn-block mt-1" type="button">Reset Password</button> 
+                  <input type="text" id="inputOtp" value={userDetails.otp ? userDetails.otp : ""} onChange={updateOtp} className="form-control mt-1" placeholder="OTP" required />
+                  <label htmlFor="inputNewPassword" className="sr-only">New Password</label>
+                  <input type="password" id="inputNewPassword" value={userDetails.newPassword ? userDetails.newPassword : ""} onChange={updateNewPassword} className="form-control mt-1" placeholder="New Password" required />
+                  <label htmlFor="inputConfirmNewPassword" className="sr-only">Email address</label>
+                  <input type="password" id="inputConfirmNewPassword" value={userDetails.confirmNewPassword ? userDetails.confirmNewPassword : ""} onChange={updateConfirmNewPassword} className="form-control mt-1" placeholder="Confirm New Password" required />
+                  <button className="btn btn-lg btn-primary btn-block mt-1" onClick={resetPassword} type="button">Reset Password</button> 
                 </>
             }
             <p className="mt-3 mb-2 text-muted copy-text">&copy; 2021</p>
