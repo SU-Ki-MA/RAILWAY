@@ -12,9 +12,9 @@ var trainsinfos = new Schema({
   arrival:String,
   distance:Number,
   return_number:String,
-  duration_h:Number,
+  duration_h:Number, 
   duration_m:Number,
-  train_coordinates:Array
+  train_coordinates:[]
 });
 var TrainsInfo = mongoose.model("TrainsInfo", trainsinfos);
 module.exports = TrainsInfo

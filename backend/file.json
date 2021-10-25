@@ -1,0 +1,52 @@
+[
+  {
+   "TARGET": [],
+   "APPLICATION_AGENT_ID": 1,
+   "STATUS": 0,
+   "UPDATED_TIME": -1,
+   "METADATA": [
+    {
+     "APPLICATION_TAG_NAME": "mehostagent-win",
+     "VERSION": [
+      {
+       "VERSION_ID": 1,
+       "APPLICATION_VERSION": "10.0.2133.1.W",
+       "PUBLISH_URL": "\\mehostagent\\mehostagentwin.zip"
+      },
+      {
+       "VERSION_ID": 2,
+       "APPLICATION_VERSION": "10.0.2133.1.W",
+       "PUBLISH_URL": "\\mehostagent\\mehostagentupgrader.exe"
+      },
+      {
+       "VERSION_ID": 3,
+       "APPLICATION_VERSION": "10.0.2133.1.W",
+       "PUBLISH_URL": "\\mehostagent\\MEAgentInstaller.exe"
+      }
+     ],
+     "METADATA_ID": 1
+    }
+   ],
+   "APPLICATION_AGENT_NAME": "MeHostAgent"
+  },
+  {
+   "TARGET": [],
+   "APPLICATION_AGENT_ID": 2,
+   "STATUS": 0,
+   "UPDATED_TIME": -1,
+   "METADATA": [
+    {
+     "APPLICATION_TAG_NAME": "ven-win-neutral",
+     "VERSION": [
+      {
+       "VERSION_ID": 4,
+       "APPLICATION_VERSION": "1.0.0",
+       "PUBLISH_URL": "\\webapps\\MEAgentFramework\\agent\\ApplicationAgents\\Venus.zip"
+      }
+     ],
+     "METADATA_ID": 2
+    }
+   ],
+   "APPLICATION_AGENT_NAME": "Venus"
+  }
+ ]

@@ -33,7 +33,8 @@ app.use(require("./routes/reset-password"));
 app.use(require("./routes/verify-jwt"));
 //station-autocomplete
 app.use(require("./routes/station-autocomplete"));
-
+//search-trains
+app.use(require("./routes/search-trains"));
 //used to run server in port 3001
 app.listen(3001, function () {
   console.log("app is running in 3001")

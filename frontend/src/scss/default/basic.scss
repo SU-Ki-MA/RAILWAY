@@ -34,3 +34,11 @@ body {
   color: red; 
   text-align: center;
 }
+.btn-primary{
+  background-color: $primary3;
+  border: none;
+  &:hover{
+    outline: none;
+    background-color: $primary2;
+  }
+}

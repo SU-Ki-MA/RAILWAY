@@ -3,6 +3,7 @@ var data=JSON.parse(fs.readFileSync("../../datas/schedulesinfo.json"))
 var output=[] 
 for(var i=0;i<data.length;i++){ 
   output.push({  
+    day:data[i].day,
     arrival: data[i].arrival, 
     train_name: data[i].train_name,
     station_name: data[i].station_name,
